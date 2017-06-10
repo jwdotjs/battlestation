@@ -13,21 +13,21 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>IP Address</th>
       <th>Name</th>
+      <th>IP Address</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <%= for {name, vm} <- @vms do %>
-      <tr>
-        <td>
-          <%= display_ip(vm.ip_address) %>
-        </td>
-        <td>
+      <tr class="jq__existing-vm">
+        <td data-type="vm_name">
           <%= vm.name %>
         </td>
-        <td>
+        <td data-type="ip_address">
+          <%= display_ip(vm.ip_address) %>
+        </td>
+        <td data-type="running_locally">
           <%= if is_local?(vm) do %>
             <div class="jq__restore">
               <i class="fa fa-refresh" /> Restore
@@ -38,5 +38,10 @@
         </td>
       </tr>
     <% end %>
+    <tr class="jq__new-vm">
+      <td colspan="3">
+        <i class="fa fa-plus" /> Add New
+      </td>
+    </tr>
   </tbody>
 </table>

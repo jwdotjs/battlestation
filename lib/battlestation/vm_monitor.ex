@@ -23,6 +23,9 @@ defmodule Battlestation.VmMonitor do
     initial_state(vms)
   end
 
+  @doc """
+  Adding, but can also be used for updating as long as the VM name has not changed
+  """
   defcast add(name, ip_address, running_locally \\ false), state: state do
     state |> Map.put(name, %{name: name, ip_address: ip_address, running_locally: running_locally}) |> new_state()
   end
