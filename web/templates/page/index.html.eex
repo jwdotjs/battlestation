@@ -1,0 +1,42 @@
+<div class="jumbotron">
+  <h1>Wifi Information</h1>
+  <div>
+    <strong>SSID:</strong>
+    SSID_HERE
+  </div>
+  <div>
+    <strong>PASSWORD:</strong>
+    PASSWORD_HERE
+  </div>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>IP Address</th>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for {name, vm} <- @vms do %>
+      <tr>
+        <td>
+          <%= display_ip(vm.ip_address) %>
+        </td>
+        <td>
+          <%= vm.name %>
+        </td>
+        <td>
+          <%= if is_local?(vm) do %>
+            <div class="jq__restore">
+              <i class="fa fa-refresh" /> Restore
+            </i>
+          <% else %>
+            -
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
